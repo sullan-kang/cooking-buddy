@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList, InteractionManager, Image, Modal } from 'react-native';
-import ShoopingInput from './Shopinput';
-import ShoppingItem from './Shopitem';
+import ShoopingInput from '../components/Shopinput';
+import ShoppingItem from '../components/Shopitem';
 function Shoppinglist() {
   const[addModleIisVisible, setaddModleIisVisible] =useState(false);
   const[shopitems, setShops]=useState([]);
