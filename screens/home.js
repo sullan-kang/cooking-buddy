@@ -19,7 +19,7 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       const apiResponse = await fetch(
-        "https://drive.google.com/file/d/11QLUlq1y3YTvKP6TsNzmRqg9hDfqc7xt/view?usp=sharing"
+        "https://my-json-server.typicode.com/ghazalebra/cook-buddy-data/languages"
       );
       const data = await apiResponse.json();
       setFakeData(data);
