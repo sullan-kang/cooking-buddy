@@ -32,12 +32,12 @@ function Shoppinglist() {
     setShops(editedItems);
   };
   return (
-    <Modal>
+    // <Modal>
     <View style={styles.appContainer}>
-      <View style={styles.shoppinglistTitle}>
-        <Text style={styles.shoppinglistTitleText}>Shopping List</Text>
-        <Image source={require('/Users/banafsheh/react-native-projects/Learn-react/assets/images/shopping-cart.png')} style={styles.shoppinglistImage}/>
-      </View>
+      {/* <View> */}
+        {/* <Text style={styles.shoppinglistTitleText}>Shopping List</Text> */}
+        {/* <Image source={require('C:/Users/ASUS/Desktop/cooking-buddy/assets/shopping-cart.png')} style={styles.shoppinglistImage}/> */}
+      {/* </View> */}
       <View style={styles.goalsContainer}>
         <FlatList data={shopitems} renderItem={itemData=>
         {return <ShoppingItem text={itemData.item.text} amount={itemData.item.amount} id={itemData.item.id} onDeleteItem={deleteShopHandler} onEditItem={editShopHandler}/>
@@ -51,21 +51,21 @@ function Shoppinglist() {
       <ShoopingInput visible={addModleIisVisible} onAddGoal={addShopHandler} onCancel={endAddModleHandler}/>
 
     </View>
-    </Modal>
+    // </Modal>
   );
 }
 export default Shoppinglist
 const styles = StyleSheet.create({
   appContainer:{
-    backgroundColor:'linen',
+    // backgroundColor:'linen',
     flex:1,
     paddingTop: 50,
-    paddingHorizontal: 16,
+    // paddingHorizontal: 16,
   },
 
   goalsContainer:{
     flex:3,
-    backgroundColor:'bisque',
+    // backgroundColor:'bisque',
   },
   button:{
 

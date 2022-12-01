@@ -3,14 +3,14 @@ import { Text, View, StyleSheet, TextInput } from 'react-native';
 import Constants from 'expo-constants';
 
 // You can import from local files
-import InventoryItem from './components/InventoryItem';
+import InventoryItem from '../components/InventoryItem';
 
 export default function Inventory() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
+      {/* <Text style={styles.title}>
         Inventory
-      </Text>
+      </Text> */}
       <TextInput style={styles.textinput} placeholder='Search...'/>
       <View style={styles.fridgewrap}>
         <View style={styles.fridge}>
@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
-    padding: 8,
+    // padding: 8,
   },
   title: {
     margin: 24,
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   textinput:{
     backgroundColor: 'white',
     padding:12,
+    marginBottom: 10,
     borderRadius: 10,
     borderColor: 'black',
     borderWidth: 2,
