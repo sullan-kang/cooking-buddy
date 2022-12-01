@@ -6,9 +6,10 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from "react-native";
-import List from "../components/Lists";
+import RecipeList from "../components/Lists"
 import SearchBar from "../components/Search";
-// import recipes from "../data"
+import { recipes } from "../data/dataArray";
+
 
 const Home = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -16,16 +17,30 @@ const Home = () => {
   const [fakeData, setFakeData] = useState();
 
   // get data from the fake api endpoint
-  useEffect(() => {
-    const getData = async () => {
-      const apiResponse = await fetch(
-        "https://my-json-server.typicode.com/ghazalebra/cook-buddy-data/languages"
-      );
-      const data = await apiResponse.json();
-      setFakeData(data);
-    };
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   console.log('here')
+  //   const getData = () => {
+  //     const apiResponse = fetch(
+  //       'https://localhost:8000/recipes',
+  //       {
+  //         method: 'POST', // *GET, POST, PUT, DELETE, etc.
+  //         mode: 'cors', // no-cors, *cors, same-origin
+  //         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  //         credentials: 'same-origin', // include, *same-origin, omit
+  //         headers: {
+  //           'Accept': 'application/json',
+  //           'Content-type': 'application/json'
+  //         }
+  //       }
+  //     )
+  //     .catch(error => {
+  //       console.log('found error', error)}
+  //     );
+  //     // const data = await apiResponse.json();
+  //     // setFakeData(data);
+  //   };
+  //   getData();
+  // }, []);
 
   return (
     <SafeAreaView style={styles.root}>
@@ -36,11 +51,14 @@ const Home = () => {
         clicked={clicked}
         setClicked={setClicked}
       />
+      <Text>
+        here {fakeData}
+      </Text>
       { (
 
-          <List
+          <RecipeList
             searchPhrase={searchPhrase}
-            data={fakeData}
+            data={recipes}
             setClicked={setClicked}
           />
 

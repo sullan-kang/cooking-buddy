@@ -4,7 +4,9 @@ import {
   Text,
   View,
   FlatList,
-  SafeAreaView,
+  SafeAreaView, 
+  TouchableHighlight,
+  Image,
 } from "react-native";
 
 // definition of the Item, which will be rendered in the FlatList
@@ -33,14 +35,14 @@ const RecipeList = ({ searchPhrase, setCLicked, data }) => {
     if (searchPhrase === "") {
       return <RecipeListView item={item} />;
     }
-    // filter of the name
-    if (item.name.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+    // title
+    if (item.title.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
       return <RecipeListView item={item} />;
     }
-    // filter of the description
-    if (item.details.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-      return <RecipeListView item={item} />;
-    }
+    // ingredients
+    // if (item.ingredients.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+    //   return <RecipeListView item={item} />;
+    // }
   };
 
   return (
@@ -50,18 +52,65 @@ const RecipeList = ({ searchPhrase, setCLicked, data }) => {
           setClicked(false);
         }}
       >
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
+      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={data} renderItem={renderRecipes} keyExtractor={(item) => `${item.recipeId}`} />
+
       </View>
     </SafeAreaView>
   );
 
 };
 
-export default List;
+export default RecipeList;
+
+
+import { Dimensions } from 'react-native';
+
+// screen sizing
+const { width, height } = Dimensions.get('window');
+// orientation must fixed
+const SCREEN_WIDTH = width < height ? width : height;
+
+const recipeNumColums = 2;
+// item size
+const RECIPE_ITEM_HEIGHT = 150;
+const RECIPE_ITEM_MARGIN = 20;
+
+// 2 photos per width
+const RecipeCard = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: RECIPE_ITEM_MARGIN,
+    marginTop: 20,
+    width: (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) / recipeNumColums,
+    height: RECIPE_ITEM_HEIGHT + 75,
+    borderColor: '#cccccc',
+    borderWidth: 0.5,
+    borderRadius: 15
+  },
+  photo: {
+    width: (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) / recipeNumColums,
+    height: RECIPE_ITEM_HEIGHT,
+    borderRadius: 15,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0
+  },
+  title: {
+    flex: 1,
+    fontSize: 17,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#444444',
+    marginTop: 3,
+    marginRight: 5,
+    marginLeft: 5,
+  },
+  category: {
+    marginTop: 5,
+    marginBottom: 5
+  }
+});
 
 const styles = StyleSheet.create({
   list__container: {
@@ -69,15 +118,8 @@ const styles = StyleSheet.create({
     height: "85%",
     width: "100%",
   },
-  item: {
-    margin: 30,
-    borderBottomWidth: 2,
-    borderBottomColor: "lightgrey"
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 5,
-    fontStyle: "italic",
-  },
+  container: RecipeCard.container,
+  photo: RecipeCard.photo,
+  title: RecipeCard.title,
+  category: RecipeCard.category,
 });
